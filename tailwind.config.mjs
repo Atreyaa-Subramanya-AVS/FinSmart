@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      animation:{
+        "spin-slow":"spin 5s ease-in-out infinite"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
