@@ -11,9 +11,6 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      animation:{
-        "spin-slow" : "spin 5s ease-in-out infinite"
-      }
     },
   },
   plugins: [],
