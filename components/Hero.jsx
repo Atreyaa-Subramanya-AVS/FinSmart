@@ -50,11 +50,11 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="text-white py-12 px-3">
+        <div className="text-white py-12 px-3 xl:ml-5">
           <h1 className="text-slate-400 ">
             Everything you need for productive team work:
           </h1>
-          <div className=" flex gap-3 ">
+          <div className=" flex gap-3">
             {[
               "Team Planner",
               "Project Management",
@@ -65,7 +65,7 @@ const Hero = () => {
             ].map((elem, indx) => (
               <div key={indx} className="flex justify-center items-center font-semibold">
                 {elem}
-                {indx !== 5 && <div className="bg-slate-300 ml-2 p-[3px] my-3 rounded-full"></div>}
+                {indx !== 5 && <div className="bg-slate-300 ml-2 p-[2px] my-3 rounded-full"></div>}
               </div>
             ))}
           </div>

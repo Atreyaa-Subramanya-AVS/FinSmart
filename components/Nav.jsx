@@ -46,7 +46,17 @@ const Nav = () => {
           </button>
 
           {["Sign In", "Get Started"].map((elem, index) => (
-            <button key={index} className="py-1 px-4 border border-white rounded-lg">{elem}</button>
+            <button
+              key={index}
+              className={`py-1 px-4 border rounded-lg transition-all
+              ${
+                elem === "Get Started"
+                  ? "bg-white text-black"
+                  : "border-white text-white"
+              }`}
+            >
+              {elem}
+            </button>
           ))}
         </div>
       </div>
