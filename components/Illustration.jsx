@@ -67,7 +67,7 @@ const Illustration = () => {
           <div
               className="relative inset-0 m-auto h-[70vh] rounded-md 
               before:content-[''] before:absolute
-              before:w-[130vw] before:h-[500vh] before:-top-[305%] before:-left-1/2 before:bg-[repeating-conic-gradient(transparent,#ffb25e,transparent,#fff,transparent,green,green)]
+              before:w-[130vw] before:h-[500vh] before:-top-[305%] before:-left-1/2 before:bg-[repeating-conic-gradient(transparent,#ff5f00,transparent,#fff,transparent,green,green)]
               before:animate-spin-slow overflow-hidden 2xl:before:-left-full"
             >
               <div className="absolute flex justify-center align-middle inset-[5px] rounded-md">
