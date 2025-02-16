@@ -7,18 +7,18 @@ import Illustration from "../public/images/hero-illustration.jpg";
 const Hero = () => {
   return (
     <div className="w-full bg-gradient-to-r from-[#090B0D] via-[#090B0D] via-50% to-[#010103]">
-      <div className="hero-content relative md:max-w-screen-xl  w-full mx-auto h-fit max-md:-mt-24">
+      <div className="hero-content relative md:max-w-screen-2xl  w-full mx-auto h-fit max-md:-mt-24">
         <div className="absolute z-10 top-48 max-md:mt-4 ml-8 max-md:ml-2">
-          <h1 className="relative scale-y-100 text-[#F6F7FD] text-4xl md:text-5xl lg:text-6xl xl:text-7xl pr-1 z-30 max-w-xl bg-gradient-to-br from-white from-30% via-[#d5d8f6] via-80% to-[#fdf7fe] bg-clip-text text-transparent tracking-tighter leading-[0.9] font-bold pb-2">
+          <h1 className="relative scale-y-100 text-[#F6F7FD] text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl pr-1 z-30 max-w-2xl bg-gradient-to-br from-white from-30% via-[#d5d8f6] via-80% to-[#fdf7fe] bg-clip-text text-transparent tracking-tighter leading-[0.9] font-bold pb-2">
             Everything App <br /> for your teams
           </h1>
-          <p className="relative z-30 max-md:max-w-[15rem] text-gray-100 mt-5 text-xs md:text-sm lg:text-base max-w-md">
+          <p className="relative z-30 max-md:max-w-[15rem] text-gray-100 mt-5 text-xs md:text-sm lg:text-base 2xl:text-xl max-w-lg">
             Meco, an open-source platform, serves as an all-in-one replacement
             of Linear, Jira, Slack, and Notion.
           </p>
-          <button className="relative py-2 px-8 mt-10 overflow-hidden rounded-full border border-white/60 bg-[#d1d1d1] space-x-1 lg:px-12 lg:mt-18 max-sm:text-xs max-sm:px-6">
-            <div className="absolute top-1/2 h-[103px] w-[204px] translate-x-1/4 -translate-y-1/2 bg-[radial-gradient(43.3%_44.23%_at_50%_49.51%,_#FFFFF7_29%,_#FFFACD_48.5%,_#F4D2BF_60.71%,rgba(214,211,210,0.00)_100%)] blur-[5px]"></div>
-            <h1 className="z-10 relative text-sm font-[545] flex text-black">
+          <button className="relative py-3 px-8 mt-10 overflow-hidden rounded-full border border-white/60 bg-[#d1d1d1] space-x-1 lg:px-12 lg:mt-18 max-sm:text-xs max-sm:px-6">
+            <div className="absolute top-1/2 h-[103px] w-[204px] translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(43.3%_44.23%_at_50%_49.51%,_#FFFFF7_29%,_#FFFACD_48.5%,_#F4D2BF_60.71%,rgba(214,211,210,0.00)_100%)] blur-[5px]"></div>
+            <h1 className="z-10 relative text-sm font-bold flex text-black uppercase tracking-wide">
               Go to Dashboard
               <svg
                 xmlns="http://www.w3.org/2000/svg"

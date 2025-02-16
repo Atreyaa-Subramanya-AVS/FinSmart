@@ -64,23 +64,38 @@ const Illustration = () => {
               Issues and GitHub Projects.
             </p>
           </div>
-          <div
-              className="relative inset-0 m-auto h-[70vh] rounded-md 
-              before:content-[''] before:absolute
-              before:w-[130vw] before:h-[500vh] before:-top-[305%] before:-left-1/2 before:bg-[repeating-conic-gradient(transparent,#ffb25e,transparent,#fff,transparent,green,green)]
-              before:animate-spin-slow overflow-hidden 2xl:before:-left-full"
-            >
-              <div className="absolute flex justify-center align-middle inset-[5px] rounded-md">
-                <Image
-                  src={illImg}
-                  alt="Bg-Image"
-                  className="object-cover rounded-md"
-                />
-              </div>
+          <div className="h-fit p-1 2xl:p-[0.375rem] overflow-hidden relative rounded-md">
+            <div
+              className="absolute inset-0 before:content-[''] before:absolute 
+                before:w-[250%] before:h-[250%] before:-left-3/4 before:-top-3/4 
+                before:bg-[repeating-conic-gradient(transparent,#ffb25e,transparent,#fff,#fff,transparent,green,green,transparent)] 
+                before:animate-spin-slow"
+            ></div>
+
+            <div className="relative z-10">
+              <Image
+                src={illImg}
+                alt="Bg-Image"
+                className="object-contain rounded-md"
+              />
             </div>
-          <div className="grid grid-cols-3 grid-rows-2 text-white pt-28 2xl:gap-24 gap-16">
+          </div>
+
+          <div className="grid grid-cols-3 grid-rows-2 text-white pt-28 gap-3">
             {Ills.map((elem) => (
-              <div key={elem.id} className="flex flex-col gap-3 px-4 py-12 hover:border transition-all">
+              <div
+                key={elem.id}
+                className="flex flex-col  gap-6 px-4 py-12  transition-all bg-[] relative"
+              >
+                <div
+                  className="absolute top-0 opacity-100 bg-white right-0 w-40 h-40 rounded-full overflow-hidden"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.4), transparent 60%)",
+                    clipPath: "circle(35% at 100% 0%)",
+                    filter: "blur(15px)"
+                  }}
+                ></div>
                 <Image
                   src={elem.Image}
                   alt="Illustration Images"

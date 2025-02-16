@@ -15,7 +15,7 @@ const Features = () => {
   return (
     <div className="relative h-full">
       <div className="absolute h-full w-screen bg-white -z-10">
-        <div className="absolute h-full w-full bg-[radial-gradient(blue_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+        <div className="absolute h-full w-full bg-[radial-gradient(blue_1px,transparent_1px)] [background-size:16px_16px] "></div>
       </div>
       <div className=" px-12 pb-36 max-w-screen-lg 2xl:max-w-screen-2xl mx-auto">
         <div className=" max-w-screen-xl mx-auto">
