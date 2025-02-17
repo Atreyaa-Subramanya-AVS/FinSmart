@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import Logo from "../public/valorant-seeklogo.svg";
+import Link from "next/link";
 
 const Nav = () => {
   return (
@@ -45,19 +46,16 @@ const Nav = () => {
             <h1>Star Us</h1>
           </button>
 
-          {["Sign In", "Get Started"].map((elem, index) => (
-            <button
-              key={index}
-              className={`py-1 px-4 border rounded-lg transition-all
-              ${
-                elem === "Get Started"
-                  ? "bg-white text-black"
-                  : "border-white text-white"
-              }`}
-            >
-              {elem}
+          <Link href={"/signin"}>
+            <button className="py-1 px-4 border rounded-lg transition-all bg-black text-white">
+              Sign In
             </button>
-          ))}
+          </Link>
+          <Link href={"/dashboard"}>
+            <button className="py-1 px-4 border rounded-lg transition-all bg-white text-black">
+              Get Started
+            </button>
+          </Link>
         </div>
       </div>
     </div>

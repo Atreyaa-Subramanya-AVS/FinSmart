@@ -27,7 +27,7 @@ const Landing = () => {
         document.body.style.overflow = "hidden"; // Restore scroll
         document.documentElement.style.overflow = "auto";
       }, 1200);
-    }, 5500);
+    }, 6500);
 
     return () => {
       document.body.style.overflow = "auto";
@@ -110,7 +110,7 @@ const Landing = () => {
                     <g transform="scale(1.2)">
                       <path
                         fill="black"
-                        transform="translate(-30,10)"
+                        transform="translate(-20,20)"
                         strokeWidth="2"
                         mask="url(#fill-mask)"
                         d="M269,225.5v-77.8c0-1.2-1.5-1.7-2.3-0.8l-85,106.2c-0.7,0.8-0.1,2.1,1,2.1h61.4c1.7,0,3.2-0.8,4.2-2.1
