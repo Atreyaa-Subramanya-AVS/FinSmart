@@ -9,36 +9,59 @@ import Feat from "@/components/QnA";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { waveform } from "ldrs";
+import dynamic from "next/dynamic";
+
+const Ldrs = dynamic(() => import("ldrs").then(mod => mod.waveform), {
+  ssr: false,
+});
 
 const Landing = () => {
-  waveform.register();
+  useEffect(() => {
+    // Register waveform only on the client
+    if (Ldrs && typeof window !== "undefined") {
+      waveform.register();
+    }
+  }, []);
 
   const [loading, setLoading] = useState(true);
   const [animateLoading, setAnimateLoading] = useState(false);
 
   useEffect(() => {
+    const hasVisited = sessionStorage.getItem("hasVisited");
+
+    if (hasVisited) {
+      // Skip loader if user has already visited
+      setLoading(false);
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "auto";
+      return;
+    }
+
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
 
     setTimeout(() => {
-      setAnimateLoading(true); // Start animation after 5s
+      setAnimateLoading(true);
       setTimeout(() => {
-        setLoading(false); // Remove loading after 1.2s animation
-        document.body.style.overflow = "hidden"; // Restore scroll
+        setLoading(false);
+        document.body.style.overflow = "hidden";
         document.documentElement.style.overflow = "auto";
+        sessionStorage.setItem("hasVisited", "true");
+        document.body.classList.remove("loader")
       }, 1200);
     }, 6500);
 
     return () => {
-      document.body.style.overflow = "auto";
-      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "auto";
     };
   }, []);
+  
 
   return (
     <>
       {loading && (
-        <div className="overflow-hidden">
+        <div className="loader overflow-hidden">
           <motion.div
             initial={{ y: 0 }}
             animate={
@@ -47,9 +70,10 @@ const Landing = () => {
                 : {}
             }
             transition={{ duration: 1.2, ease: "easeInOut" }}
+            viewport={{once:true}}
             className="fixed inset-0 flex items-center justify-center bg-white z-50 w-full h-full overflow-hidden"
           >
-            <div className="grid place-items-center">
+            <div className="grid place-items-center relative">
               <div className=" scale-150 h-[25vh] w-[15vw] flex items-center justify-center">
                 <svg
                   version="1.1"
@@ -82,7 +106,7 @@ const Landing = () => {
                   <g>
                     <g transform="scale(1.2)">
                       <path
-                        fill="white"
+                        fill="#e2e8f0"
                         transform="translate(-30,10)"
                         strokeWidth="2"
                         d="M269,225.5v-77.8c0-1.2-1.5-1.7-2.3-0.8l-85,106.2c-0.7,0.8-0.1,2.1,1,2.1h61.4c1.7,0,3.2-0.8,4.2-2.1
@@ -94,7 +118,7 @@ const Landing = () => {
                 </svg>
               </div>
 
-              <div className=" scale-150 h-[25vh] w-[15vw] flex items-center justify-center absolute">
+              <div className=" scale-150 h-[25vh] w-[15vw] flex items-center justify-center absolute inset-0">
                 <svg
                   version="1.1"
                   id="layer"
@@ -110,7 +134,7 @@ const Landing = () => {
                     <g transform="scale(1.2)">
                       <path
                         fill="black"
-                        transform="translate(-20,20)"
+                        transform="translate(-30,10)"
                         strokeWidth="2"
                         mask="url(#fill-mask)"
                         d="M269,225.5v-77.8c0-1.2-1.5-1.7-2.3-0.8l-85,106.2c-0.7,0.8-0.1,2.1,1,2.1h61.4c1.7,0,3.2-0.8,4.2-2.1

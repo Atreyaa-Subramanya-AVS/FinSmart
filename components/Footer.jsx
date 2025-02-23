@@ -18,8 +18,8 @@ const Footer = () => {
           alt="Footer-Bg"
           className="w-full h-full object-cover z-0"
         />
-        <div className="absolute top-1/4 left-1/2 -mt-12 2xl:-ml-12 z-0">
-          <h1 className="text-[#F6F7FD] text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl pr-1 z-30 max-w-xl bg-gradient-to-br from-white from-30% via-[#d5d8f6] via-80% to-[#fdf7fe] bg-clip-text text-transparent tracking-tight font-semibold leading-[0.9]">
+        <div className="absolute top-1/4 left-1/2 2xl:-mt-4 2xl:-ml-20 z-0">
+          <h1 className="text-[#F6F7FD] text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl pr-1 z-30 max-w-xl bg-gradient-to-br from-white from-30% via-[#d5d8f6] via-80% to-[#fdf7fe] bg-clip-text text-transparent tracking-wide font-semibold leading-[0.9]">
             Join the <br /> Movement
           </h1>
           <p className="max-w-md text-balance mt-3 lg:text-sm 2xl:text-base">
