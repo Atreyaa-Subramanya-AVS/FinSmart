@@ -1,14 +1,17 @@
 "use client";
 
+import { useRouter } from "next/navigation"; // Correct import for Next.js App Router (13+)
 import EmailInput from "@/components/comp-10";
 import SignInUI from "@/components/comp-122";
 import { Button } from "@/components/ui/button";
 import PasswordStrengthIndicator from "@/components/password";
 import React from "react";
 
-const Page = () => {  
-  const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/google"; // Redirect to backend Google OAuth
+const Page = () => {
+  const router = useRouter(); // Initialize router
+
+  const handleSignIn = () => {
+    router.push("/dashboard"); // Navigate to Dashboard Page
   };
 
   return (
@@ -16,18 +19,14 @@ const Page = () => {
       <div className="max-w-screen-lg">
         <EmailInput />
         <PasswordStrengthIndicator />
-        <Button className="my-12 inline-flex justify-center items-center mx-auto">
-          Sign In
-        </Button>
         
-        {/* Google OAuth Button */}
-        <button 
-          onClick={handleGoogleLogin} 
-          className="bg-red-600 text-white px-4 py-2 rounded-lg mt-4"
-        >
-          Login with Google
-        </button>
-        
+        {/* Centered Button */}
+        <div className="flex justify-center my-12">
+          <Button onClick={handleSignIn} className="px-6 py-2">
+            Sign In
+          </Button>
+        </div>
+
         <SignInUI />
       </div>
     </div>
@@ -35,3 +34,4 @@ const Page = () => {
 };
 
 export default Page;
+  
