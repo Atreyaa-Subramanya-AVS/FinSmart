@@ -51,7 +51,7 @@ export default function PasswordStrengthIndicator() {
     (<div>
       {/* Password input field with toggle visibility button */}
       <div className="space-y-2">
-        <Label htmlFor={id}>Input with password strength indicator</Label>
+        <Label htmlFor={id}>Password:</Label>
         <div className="relative">
           <Input
             id={id}

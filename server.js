@@ -6,7 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const GitHubStrategy = require("passport-github2").Strategy;
 require("./config/passport");
 
 const app = express();
@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // ✅ User Schema
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String }
 });
 
 const User = mongoose.model("User", UserSchema);
@@ -112,6 +112,40 @@ app.get("/auth/logout", (req, res) => {
         res.redirect("http://localhost:5173");
     });
 });
+
+// ✅ GitHub OAuth Configuration
+passport.use(
+    new GitHubStrategy(
+        {
+            clientID: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+            callbackURL: "http://localhost:5000/auth/github/callback",
+        },
+        async (accessToken, refreshToken, profile, done) => {
+            try {
+                let user = await User.findOne({ username: profile.username });
+                if (!user) {
+                    user = new User({ username: profile.username, password: null });
+                    await user.save();
+                }
+                return done(null, user);
+            } catch (err) {
+                return done(err, null);
+            }
+        }
+    )
+);
+
+// ✅ GitHub OAuth Routes
+app.get("/auth/github", passport.authenticate("github", { scope: ["user:email"] }));
+
+app.get(
+    "/auth/github/callback",
+    passport.authenticate("github", { failureRedirect: "http://localhost:3000/login" }),
+    (req, res) => {
+        res.redirect("http://localhost:3000/dashboard");
+    }
+);
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
