@@ -13,7 +13,7 @@ const Hero = () => {
           <h1 className="relative scale-y-100 text-[#F6F7FD] text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl pr-1 z-30 max-w-2xl bg-gradient-to-br from-white from-30% via-[#d5d8f6] via-80% to-[#fdf7fe] bg-clip-text text-transparent tracking-tighter leading-[0.9] font-bold pb-2">
             Everything App <br /> for your teams
           </h1>
-          <p className="relative z-30 max-md:max-w-[15rem] text-gray-100 mt-5 text-xs md:text-sm lg:text-base 2xl:text-xl max-w-lg">
+          <p className="relative z-30 max-md:max-w-[15rem] text-gray-100 mt-5 text-xs md:text-sm lg:text-base 2xl:text-lg max-w-lg">
             Meco, an open-source platform, serves as an all-in-one replacement
             of Linear, Jira, Slack, and Notion.
           </p>
