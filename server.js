@@ -6,8 +6,11 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const GitHubStrategy = require("passport-github2").Strategy;
 =======
+=======
+>>>>>>> Stashed changes
 const session = require("express-session");
 const passport = require("passport");
 
@@ -42,7 +45,11 @@ mongoose
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     password: { type: String }
+=======
+    password: { type: String, required: true },
+>>>>>>> Stashed changes
 =======
     password: { type: String, required: true },
 >>>>>>> Stashed changes
@@ -131,6 +138,7 @@ app.get("/auth/logout", (req, res) => {
 });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // ✅ GitHub OAuth Configuration
 passport.use(
     new GitHubStrategy(
@@ -168,6 +176,11 @@ app.get(
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+=======
+// ✅ Start Express Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+>>>>>>> Stashed changes
 =======
 // ✅ Start Express Server
 const PORT = process.env.PORT || 5000;
