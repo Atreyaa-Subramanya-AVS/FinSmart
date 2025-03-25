@@ -6,9 +6,9 @@ import Link from "next/link";
 
 const Nav = () => {
   return (
-    <div className="absolute inset-0 h-fit z-10 bg-transparent text-white pb-5 pt-2 ">
-      <div className="nav flex z-10 justify-between sticky top-0 max-w-screen-2xl mx-auto items-center whitespace-nowrap text-sm max-sm:px-0 max-md:px-7 md:text-base">
-        <div className="flex gap-12 items-center justify-center ">
+    <div className="fixed top-0 left-0 w-full z-10 bg-transparent text-white pb-5 pt-2">
+      <div className="nav flex z-10 justify-between max-w-screen-2xl mx-auto items-center whitespace-nowrap text-sm max-sm:mx-auto md:text-base">
+        <div className="flex gap-12 items-center justify-between">
           <div className="inline-flex justify-center items-center gap-2">
             <Image
               src={Logo}
@@ -22,13 +22,17 @@ const Nav = () => {
           <div className="hidden lg:flex gap-8">
             {["Pricing", "Resources", "Community", "Download"].map(
               (elem, index) => (
-                <button key={index}>{elem}</button>
+                <button key={index} className="relative text-white px-4 py-2 group">
+                  <h1 className="relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full">
+                    {elem}
+                  </h1>
+                </button>
               )
             )}
           </div>
         </div>
-        <div className="flex gap-6 pr-8 justify-center items-center">
-          <button className="inline-flex justify-center items-center gap-2">
+        <div className="flex md:gap-6 pr-8 justify-center items-center max-sm:-mx-10">
+          <button className="inline-flex justify-center items-center gap-2 max-md:hidden">
             <svg
               width="14"
               height="14"
@@ -47,12 +51,12 @@ const Nav = () => {
           </button>
 
           <Link href={"/signin"}>
-            <button className="py-1 px-4 border rounded-lg transition-all bg-black text-white">
+            <button className="py-1 px-4 border rounded-lg transition-all max-sm:scale-75 bg-black text-white">
               Sign In
             </button>
           </Link>
           <Link href={"/dashboard"}>
-            <button className="py-1 px-4 border rounded-lg transition-all bg-white text-black">
+            <button className="py-1 px-4 border rounded-lg transition-all max-md:-ml-4 max-sm:scale-75 bg-white text-black">
               Get Started
             </button>
           </Link>

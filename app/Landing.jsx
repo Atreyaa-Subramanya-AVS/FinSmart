@@ -10,7 +10,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { waveform } from "ldrs";
 import dynamic from "next/dynamic";
-
+ 
 const Ldrs = dynamic(() => import("ldrs").then(mod => mod.waveform), {
   ssr: false,
 });

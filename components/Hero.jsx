@@ -18,7 +18,7 @@ const Hero = () => {
             of Linear, Jira, Slack, and Notion.
           </p>
           <Link href={"/dashboard"}>
-            <button className="relative py-3 px-8 mt-10 overflow-hidden rounded-full border border-white/60 bg-[#d1d1d1] space-x-1 lg:px-12 lg:mt-18 max-sm:text-xs max-sm:px-6">
+            <button className="relative py-3 px-8 mt-10 overflow-hidden rounded-full border border-white/60 bg-[#d1d1d1] space-x-1 lg:px-12 lg:mt-18 max-sm:text-xs max-sm:px-6 max-sm:scale-75 max-sm:mt-5 max-sm:-ml-6">
               <div className="absolute top-1/2 h-[103px] w-[204px] translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(43.3%_44.23%_at_50%_49.51%,_#FFFFF7_29%,_#FFFACD_48.5%,_#F4D2BF_60.71%,rgba(214,211,210,0.00)_100%)] blur-[5px]"></div>
               <h1 className="z-10 relative text-sm font-bold flex text-black uppercase tracking-wide">
                 Go to Dashboard
@@ -45,7 +45,7 @@ const Hero = () => {
               autoPlay
               muted
               loop
-              className="z-0 pt-52 max-lg:pt-44 max-sm:pt-60 scale-150 max-md:ml-10 relative md:-mt-6"
+              className="z-0 pt-52 max-lg:pt-44 max-sm:pt-52 scale-150 max-md:ml-10 relative md:-mt-6 max-md:scale-[1.7]"
               src="/videos/hero.mp4"
             ></video>
             <div className="rounded-md">
