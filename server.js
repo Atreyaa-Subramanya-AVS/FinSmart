@@ -1,23 +1,12 @@
 require("dotenv").config();
-const express = require("express");
-// const passport = require("passport"); // Duplicate declaration removed
+    const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-const GitHubStrategy = require("passport-github2").Strategy;
-=======
-=======
->>>>>>> Stashed changes
 const session = require("express-session");
 const passport = require("passport");
-
->>>>>>> Stashed changes
-require("./config/passport");
-
-
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 const app = express();
 
@@ -26,7 +15,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(
     session({
-        secret: process.env.SESSION_SECRET || "mysecret",
+        secret: process.env.JWT_SECRET || "mysecret",
         resave: false,
         saveUninitialized: true,
     })
@@ -34,85 +23,54 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// ✅ Connect MongoDB (LOCALHOST)
-const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/finsmartDB";  // Default to localhost
+// ✅ Connect MongoDB (Atlas)
 mongoose
-    .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.MONGO_URI)
     .then(() => console.log("✅ MongoDB Connected Successfully"))
     .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
+
+
 // ✅ User Schema & Model
 const UserSchema = new mongoose.Schema({
+    googleId: { type: String, unique: true },
     username: { type: String, required: true, unique: true },
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    password: { type: String }
-=======
-    password: { type: String, required: true },
->>>>>>> Stashed changes
-=======
-    password: { type: String, required: true },
->>>>>>> Stashed changes
 });
 
 const User = mongoose.model("User", UserSchema);
 
-// ✅ JWT Secret Key
-const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
+// ✅ Google OAuth Setup
+passport.use(
+    new GoogleStrategy(
+        {
+            clientID: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL: "http://localhost:5000/auth/google/callback",
+        },
+        async (accessToken, refreshToken, profile, done) => {
+            try {
+                let user = await User.findOne({ googleId: profile.id });
 
-// ✅ Middleware to Verify JWT Token
-const authenticateUser = (req, res, next) => {
-    const token = req.header("Authorization");
-    if (!token) return res.status(401).json({ message: "Access Denied" });
+                if (!user) {
+                    user = new User({ googleId: profile.id, username: profile.displayName });
+                    await user.save();
+                }
 
-    try {
-        const verified = jwt.verify(token, JWT_SECRET);
-        req.user = verified;
-        next();
-    } catch (err) {
-        res.status(400).json({ message: "Invalid Token" });
-    }
-};
+                return done(null, user);
+            } catch (err) {
+                return done(err, null);
+            }
+        }
+    )
+);
 
-// ✅ Register User
-app.post("/register", async (req, res) => {
-    const { username, password } = req.body;
-    const existingUser = await User.findOne({ username });
-
-    if (existingUser) return res.status(400).json({ message: "Username already exists" });
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword });
-
-    try {
-        await newUser.save();
-        res.status(201).json({ message: "User registered successfully" });
-    } catch (err) {
-        res.status(500).json({ message: "Server error" });
-    }
+passport.serializeUser((user, done) => {
+    done(null, user.id);
 });
 
-// ✅ Login User
-app.post("/login", async (req, res) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
-
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-        return res.status(400).json({ message: "Invalid username or password" });
-    }
-
-    const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: "1h" });
-    res.json({ message: "Login successful", token });
-});
-
-// ✅ Delete User Account
-app.delete("/delete", authenticateUser, async (req, res) => {
-    try {
-        await User.findByIdAndDelete(req.user._id);
-        res.json({ message: "Account deleted successfully" });
-    } catch (err) {
-        res.status(400).json({ message: "Error deleting account" });
-    }
+passport.deserializeUser(async (id, done) => {
+    const user = await User.findById(id);
+    done(null, user);
 });
 
 // ✅ Google OAuth Routes
@@ -120,9 +78,9 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "em
 
 app.get(
     "/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "http://localhost:3000/login" }),
+    passport.authenticate("google", { failureRedirect: "http://localhost:5173/login" }),
     (req, res) => {
-        res.redirect("http://localhost:3000/dashboard");
+        res.redirect("http://localhost:5173/dashboard");
     }
 );
 
@@ -137,52 +95,6 @@ app.get("/auth/logout", (req, res) => {
     });
 });
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-// ✅ GitHub OAuth Configuration
-passport.use(
-    new GitHubStrategy(
-        {
-            clientID: process.env.GITHUB_CLIENT_ID,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET,
-            callbackURL: "http://localhost:5000/auth/github/callback",
-        },
-        async (accessToken, refreshToken, profile, done) => {
-            try {
-                let user = await User.findOne({ username: profile.username });
-                if (!user) {
-                    user = new User({ username: profile.username, password: null });
-                    await user.save();
-                }
-                return done(null, user);
-            } catch (err) {
-                return done(err, null);
-            }
-        }
-    )
-);
-
-// ✅ GitHub OAuth Routes
-app.get("/auth/github", passport.authenticate("github", { scope: ["user:email"] }));
-
-app.get(
-    "/auth/github/callback",
-    passport.authenticate("github", { failureRedirect: "http://localhost:3000/login" }),
-    (req, res) => {
-        res.redirect("http://localhost:3000/dashboard");
-    }
-);
-
-// ✅ Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-=======
 // ✅ Start Express Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
->>>>>>> Stashed changes
-=======
-// ✅ Start Express Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
->>>>>>> Stashed changes

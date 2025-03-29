@@ -24,15 +24,18 @@
     "jsonwebtoken": "^9.0.2",
     "ldrs": "^1.0.2",
     "lucide-react": "^0.475.0",
-    "mongoose": "^8.10.2",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.1",
     "motion": "^12.4.2",
     "next": "15.1.6",
     "passport": "^0.7.0",
+    "passport-github": "^1.1.0",
     "passport-github2": "^0.1.12",
     "passport-google-oauth20": "^2.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.15.1",
+    "session": "^0.1.0",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -40,7 +43,24 @@
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "nodemon": "^3.1.9",
     "postcss": "^8",
     "tailwindcss": "^3.4.1"
-  }
+  },
+  "description": "A sleek and intelligent platform for managing personal finances and gaining real-time stock insights. Track expenses, analyze trends, and make informed financial decisions—all in one place!",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atreyaa-Subramanya-AVS/FinSmart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Atreyaa-Subramanya-AVS/FinSmart/issues"
+  },
+  "homepage": "https://github.com/Atreyaa-Subramanya-AVS/FinSmart#readme"
 }
